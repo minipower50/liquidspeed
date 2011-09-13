@@ -1,0 +1,4 @@
+
+Release Notes - Gradle - Version 1.0-milestone-3
+
+See http://docs.codehaus.org/display/GRADLE/Gradle+1.0-milestone-3+Release+Notes

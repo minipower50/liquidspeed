@@ -1,0 +1,24 @@
+apply plugin: 'java'
+version = 1.0
+
+task createZip(type: Zip) {
+    from '../src/cwm-root'
+    archiveName = 'liquidspeed-unsigned.zip'
+	destinationDir = new File('../target')
+}
+
+task signZip << {
+  def signedZip = '../target/liquidspeed-' + project.version + '.zip'
+  ant{
+    java(
+	    classname:'testsign',
+	    fork:true,
+	    failonerror:true,
+		classpath:'tools/testsign.jar'
+	  )
+	{
+	  arg(line:'../target/liquidspeed-unsigned.zip')
+	  arg(line:signedZip)
+	}
+  }
+}
