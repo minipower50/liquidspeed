@@ -1,0 +1,20 @@
+#!/system/bin/sh
+# Taken from V6 SuperCharger, OOM Grouping & Priority Fixes created by zeppelinrox.
+execute=0;
+currentadj=`cat /sys/module/lowmemorykiller/parameters/adj`;
+currentminfree=`cat /sys/module/lowmemorykiller/parameters/minfree`;
+scadj="0,3,5,7,14,15";
+scminfree="1536,3072,51200,57600,64000,76800";
+if [ "$currentadj" != "$scadj" ]; then
+	execute=1;
+elif [[ -n "$scminfree" ]] && [ "$currentminfree" != "$scminfree" ]; then
+	execute=1;
+fi;
+if [ "$execute" -eq 1 ]; then
+	echo $scadj > /sys/module/lowmemorykiller/parameters/adj;
+	echo $scminfree > /sys/module/lowmemorykiller/parameters/minfree;
+	echo "0" > /proc/sys/vm/oom_kill_allocating_task;
+	echo "0" > /proc/sys/vm/panic_on_oom;
+	busybox sysctl -w kernel.panic_on_oops=1;
+	busybox sysctl -w kernel.panic=0;
+fi;

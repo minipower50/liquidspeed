@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FactoryShortcuts>
+	<Launcher>
+		<favorites>
+			<favorite_type>favorite</favorite_type>
+			<packageName>com.sec.android.app.factory</packageName>
+			<className>com.sec.android.app.factory.FactoryCTRL</className>
+			<screen>2</screen>
+			<launcher_x>0</launcher_x>
+			<launcher_y>0</launcher_y>
+		</favorites>
+	</Launcher>
+</FactoryShortcuts>

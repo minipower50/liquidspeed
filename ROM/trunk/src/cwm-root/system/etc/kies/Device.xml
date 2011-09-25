@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<SDP version="0.9" domain="Particular">
+  <Device>
+    <ModelName      value="SCH-I905"/>
+    <BaseModelName  value="SCH-I905"/>
+    <ProjectName  value="P4"/>
+    <FriendlyName  value="P4"/>
+    <ProductLineup value="HHP"/>
+    <OS value="Android"  version="3.0"/>
+    <TargetMarket value= "Europe" />
+    <Platform value="Android" lab="GALAB"/>
+    <Language value= "English" />
+    <LCD>
+      <Type value="WXGA"/>
+      <Width  value="800"/>
+      <Height value="1024"/>
+      <Color value="16777216"/>
+    </LCD>
+    <Operator value="Open" />
+    <ConnectModes>
+      <USB>
+      <ConnectMode name="PCLink" value= "MODEM">
+      	<SupportApp>
+  			</SupportApp>
+      </ConnectMode>
+      <ConnectMode name="RemovableDisk" value= "UMS" >
+		  	<SupportApp>
+		  	</SupportApp>
+	    </ConnectMode>
+      </USB>
+    </ConnectModes>
+    <SIM>
+      <SupportDualSim value="FALSE" />
+    </SIM>
+    <TwoNumber value="FALSE"/>
+    <Storage>
+      <SupportExternal value="TRUE"/>
+    </Storage>
+    <TimeCoordinate value="UTC"/>
+    <DST value="FALSE"/>
+    <MediaSync value="FALSE">
+	</MediaSync>
+   <FirmwareUpdate value="TRUE"/>
+  </Device>
+</SDP>
