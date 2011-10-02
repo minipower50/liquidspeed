@@ -1,20 +1,15 @@
 #!/system/bin/sh
-# Taken from V6 SuperCharger, OOM Grouping & Priority Fixes created by zeppelinrox.
-execute=0;
-currentadj=`cat /sys/module/lowmemorykiller/parameters/adj`;
-currentminfree=`cat /sys/module/lowmemorykiller/parameters/minfree`;
-scadj="0,3,5,7,14,15";
-scminfree="1536,3072,51200,57600,64000,76800";
-if [ "$currentadj" != "$scadj" ]; then
-	execute=1;
-elif [[ -n "$scminfree" ]] && [ "$currentminfree" != "$scminfree" ]; then
-	execute=1;
-fi;
-if [ "$execute" -eq 1 ]; then
-	echo $scadj > /sys/module/lowmemorykiller/parameters/adj;
-	echo $scminfree > /sys/module/lowmemorykiller/parameters/minfree;
-	echo "0" > /proc/sys/vm/oom_kill_allocating_task;
-	echo "0" > /proc/sys/vm/panic_on_oom;
-	busybox sysctl -w kernel.panic_on_oops=1;
-	busybox sysctl -w kernel.panic=0;
-fi;
+
+echo "0,3,5,7,14,15" > /sys/module/lowmemorykiller/parameters/adj;
+echo "1536,3072,51200,57600,64000,76800" > /sys/module/lowmemorykiller/parameters/minfree;
+echo "50" > /proc/sys/vm/swappiness
+echo "10" > /proc/sys/vm/vfs_cache_pressure
+echo "500" > /proc/sys/vm/dirty_expire_centisecs
+echo "1000" > /proc/sys/vm/dirty_writeback_centisecs
+echo "90" > /proc/sys/vm/dirty_ratio
+echo "5" > /proc/sys/vm/dirty_background_ratio
+echo "0" > /proc/sys/vm/oom_kill_allocating_task;
+echo "0" > /proc/sys/vm/panic_on_oom;
+busybox sysctl -w kernel.panic_on_oops=1;
+busybox sysctl -w kernel.panic=0;
+

@@ -1,0 +1,7 @@
+#!/system/bin/sh
+if ! applypatch -c EMMC:/dev/block/mmcblk0p2:2048:1a970f1f1402a95beac632cf701531c5956b13a3; then
+  log -t recovery "Installing new recovery image"
+  applypatch EMMC:/dev/block/mmcblk0p3:4061184:bec5b9c1d11ff42d2a313913c33637c222ee38bf EMMC:/dev/block/mmcblk0p2 50297ca89ad04a6c0f219795ba75b43e9ff6bc70 4485120 bec5b9c1d11ff42d2a313913c33637c222ee38bf:/system/recovery-from-boot.p
+else
+  log -t recovery "Recovery image already installed"
+fi
